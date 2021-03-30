@@ -5,7 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="dexec-apeschar",
-    version="0.0.1",
+    version_config=True,
+    setup_requires=["setuptools-git-versioning"],
     author="Albert Peschar",
     author_email="albert@peschar.net",
     description="Easily run commands inside your projects' Docker containers",
