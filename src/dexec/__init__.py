@@ -5,7 +5,17 @@ from pathlib import Path
 
 
 def main():
-    config_dir, config_file = find_config_file()
+    user_command = sys.argv[1:]
+
+    if not user_command:
+        print("Usage: %s COMMAND [ARGS ...]" % sys.argv[0], file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        config_dir, config_file = find_config_file()
+    except RuntimeError as e:
+        print(e.msg, file=sys.stderr)
+        sys.exit(2)
 
     config = ConfigParser()
     config.read(config_file)
@@ -14,7 +24,6 @@ def main():
     path = Path(config["dexec"]["path"])
     workdir = path / Path.cwd().relative_to(config_dir)
 
-    user_command = sys.argv[1:]
     options = []
 
     while user_command[0].startswith("-"):
@@ -39,7 +48,3 @@ def find_config_file():
             raise RuntimeError("Couldn't find .dexec anywhere")
         cwd = cwd.parent
     return cwd, cwd / ".dexec"
-
-
-if __name__ == '__main__':
-    main()
