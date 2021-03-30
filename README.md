@@ -18,7 +18,7 @@ container=my_container
 path=/data
 ~~~
 
-Where container is the name of the container, and path the path inside the
+Where `container` is the name of the container, and `path` the path inside the
 container of the directory in which the `.dexec` file is placed.
 
 Now, just run:
