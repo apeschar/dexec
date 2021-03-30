@@ -2,6 +2,14 @@
 
 dexec allows you to easily run commands inside project-based Docker containers.
 
+## Installation
+
+~~~
+python3 -m pip install dexec
+~~~
+
+## Usage
+
 Simply create a `.dexec` file like this:
 
 ~~~
