@@ -14,7 +14,7 @@ def main():
     try:
         config_dir, config_file = find_config_file()
     except RuntimeError as e:
-        print(e.msg, file=sys.stderr)
+        print(e.args[0], file=sys.stderr)
         sys.exit(2)
 
     config = ConfigParser()
@@ -44,7 +44,7 @@ def main():
 def find_config_file():
     cwd = Path.cwd()
     while not (cwd / ".dexec").exists():
-        if cwd == cwd.root:
+        if str(cwd) == str(cwd.root):
             raise RuntimeError("Couldn't find .dexec anywhere")
         cwd = cwd.parent
     return cwd, cwd / ".dexec"
